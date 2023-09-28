@@ -1,8 +1,7 @@
 from fastapi import FastAPI
-from ..scraper.scrape import scrape_all_restaurants
+from scraper.scrape import scrape_all_restaurants
 import json
-import time
-import schedule
+from apscheduler.schedulers.background import BackgroundScheduler
 
 app = FastAPI()
 
@@ -17,7 +16,13 @@ async def get_hall(hall: str, day: str):
         data = json.load(path)
     return data
 
-schedule.every(1).day.at("1:00").do(scrape_all_restaurants)
+@app.on_event("startup")
+def init_job():
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(scrape_all_restaurants, 'cron', hour=1)
+    scheduler.start()
+
+
 
 
     

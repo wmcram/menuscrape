@@ -1,4 +1,3 @@
-import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
@@ -54,5 +53,5 @@ def scrape_all_restaurants():
     data = []
     for hall in hall_names:
         data.append(scrape_restaurant(hall))
-    with open("data/" + date, "w", encoding="utf-8") as f:
+    with open("scraper/data/" + date, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False)
