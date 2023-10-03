@@ -1,0 +1,9 @@
+services:
+  server:
+    build: .
+  webdriver:
+    image: selenium/standalone-chrome
+    hostname: chrome
+    ports:
+      - "4444:4444"
+    shm_size: 2g

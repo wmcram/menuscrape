@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from scraper.scrape import scrape_all_restaurants
+from .scraper.scrape import scrape_all_restaurants
 import json
 from apscheduler.schedulers.background import BackgroundScheduler
 

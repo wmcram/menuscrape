@@ -1,5 +1,7 @@
 FROM python:3.9
 
+ENV DISPLAY=:99
+
 WORKDIR /code
 
 COPY ./requirements.txt /code/requirements.txt
