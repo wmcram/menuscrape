@@ -1,9 +1,17 @@
 services:
-  server:
-    build: .
   webdriver:
     image: selenium/standalone-chrome
-    hostname: chrome
     ports:
       - "4444:4444"
     shm_size: 2g
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4444/wd/hub/status"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  server:
+    build: 
+      context: ./server
+    depends_on:
+      webdriver:
+        condition: service_healthy

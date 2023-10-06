@@ -4,8 +4,9 @@ from selenium.webdriver.common.by import By
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
 options.add_argument('--no-sandbox')
+
 browser = webdriver.Remote(
-    command_executor='localhost:4444/wd/hub',
+    command_executor='http://webdriver:4444/wd/hub',
     options=options
 )
 url_prefix = "https://wisc-housingdining.nutrislice.com/menu"
